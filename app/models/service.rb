@@ -1,3 +1,3 @@
-class Table < ActiveRecord::Base
+class Service < ActiveRecord::Base
   
 end
