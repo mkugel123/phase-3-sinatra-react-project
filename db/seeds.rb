@@ -1,5 +1,7 @@
 puts "🌱 Seeding spices..."
 
-# Seed your database here
+10.times do
+  Table.create()
+end
 
 puts "✅ Done seeding!"

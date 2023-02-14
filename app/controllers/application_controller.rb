@@ -3,8 +3,11 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
   get "/waiters/names" do
-    names = Waiter.pluck(:name)
-    names.to_json
+    Waiter.names.to_json
+  end
+
+  get "/tables" do
+    Table.all.to_json
   end
 
   post "/waiters" do
