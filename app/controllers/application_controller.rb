@@ -10,6 +10,12 @@ class ApplicationController < Sinatra::Base
     Table.all.to_json
   end
 
+  patch "/tables/:id" do
+    table = Table.find(params[:id])
+    table.update(occupied: params[:occupied])
+    table.to_json
+  end
+
   post "/waiters" do
     waiter = Waiter.create(
       name: params[:name],
