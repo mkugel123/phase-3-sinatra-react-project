@@ -2,8 +2,8 @@ class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
   # Add your routes here
-  get "/waiters/names" do
-    Waiter.names.to_json
+  get "/waiters" do
+    Waiter.all.to_json
   end
 
   get "/tables" do
@@ -22,6 +22,17 @@ class ApplicationController < Sinatra::Base
       tips: 0.0
     )
     waiter.to_json
+  end
+
+  post "/services" do
+    service = Service.create(
+      tab_total: params[:tabTotal].to_f,
+      tip: params[:tabTotal].to_f * params[:tip].to_f,
+      waiter_id: params[:waiterId],
+      table_id: params[:tableId]
+    )
+
+    service.to_json
   end
 
 end

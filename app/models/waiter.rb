@@ -1,7 +1,8 @@
 class Waiter < ActiveRecord::Base
   has_many :services
 
-  def self.names
-    pluck(:name)
-  end 
+  def tips
+    tips = self.services.pluck(:tip)
+    tips.sum
+  end
 end
