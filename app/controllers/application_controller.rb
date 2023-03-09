@@ -3,13 +3,20 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
   get "/waiters" do
-    Waiter.all.to_json
+    Waiter.all.to_json(include: :services)
   end
 
-  get "/waiters/:id/tips" do
+  get "/waiters/:id" do
     waiter = Waiter.find(params[:id])
 
-    waiter.tips.to_json
+    waiter.to_json(include: :services)
+  end
+
+  post "/waiters" do
+    waiter = Waiter.create(
+      name: params[:name],
+    )
+    waiter.to_json(include: :services)
   end
 
   get "/tables" do
